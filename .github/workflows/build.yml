@@ -3,16 +3,16 @@ name: Build image Windows 10 EVD avec Office 365 et FSLogix
 on: workflow_dispatch
 
 env:
-#Packer
-RG_IMAGES: "ADTSP-CI-PACKERIMAGE2-PROD" #RG pour stocker l'image générée par Packer
-IMAGE_WVD: "W10-EVD-20h2" #Nom de l'image
-IMAGE_LOCATION: "northeurope" #Region Azure
-OS: "Windows" #Type OS
-PUBLISHER: "MicrosoftWindowsDesktop" #Editeur
-OFFER: "office-365" #Inclus O365
-SKU: "20h2-evd-o365pp" #Ref SKU
-SHARE_PROFILS_LOCATION: "file-server-vm" #Hostname stockage profils
-SHARE_PROFILS_FOLDER: "fslogix" #Nom du partage"
+  #Packer
+  RG_IMAGES: "ADTSP-CI-PACKERIMAGE2-PROD" #RG pour stocker l'image générée par Packer
+  IMAGE_WVD: "W10-EVD-20h2" #Nom de l'image
+  IMAGE_LOCATION: "northeurope" #Region Azure
+  OS: "Windows" #Type OS
+  PUBLISHER: "MicrosoftWindowsDesktop" #Editeur
+  OFFER: "office-365" #Inclus O365
+  SKU: "20h2-evd-o365pp" #Ref SKU
+  SHARE_PROFILS_LOCATION: "file-server-vm" #Hostname stockage profils
+  SHARE_PROFILS_FOLDER: "fslogix" #Nom du partage"
 
 jobs:
 
@@ -22,9 +22,9 @@ jobs:
 
     steps:
 
-    -name: Download Repo content
-     uses: actions/checkout@v2
+     - name: Download Repo content
+       uses: actions/checkout@v2
 
-    -name: Packer Validation
-     run: |
-        packer validate -var 'packerspn_Id=${{ secrets.PACKERSPN_ID}}' -var 'packerspn_Secret=${{ secrets.PACKERSPN_SECRET }}' -var 'tenant_Id=${{ secrets.TENANT_ID }}' -var 'subscription_id=${{ secrets.AZURE_SUBID }}' -var 'image_Rgname=${{ env.RG_IMAGES }}' -var 'image_Name=${{ env.IMAGE_WVD }}' -var 'image_location=${{ env.IMAGE_LOCATION }}' -var 'Os=${{ env.OS }}' -var 'Publisher=${{ env.PUBLISHER}}' -var 'Offer=${{ env.OFFER }}' -var 'Sku=${{ env.SKU }}' -var 'Share_Profils_location=${{ env.SHARE_PROFILS_LOCATION }}' -var 'Share_Profils_folder=${{ env.SHARE_PROFILS_FOLDER }}' ./Packer/image-w10evd.json
+     - name: Packer Validation
+       run: |
+          packer validate -var 'packerspn_Id=${{ secrets.PACKERSPN_ID}}' -var 'packerspn_Secret=${{ secrets.PACKERSPN_SECRET }}' -var 'tenant_Id=${{ secrets.TENANT_ID }}' -var 'subscription_id=${{ secrets.AZURE_SUBID }}' -var 'image_Rgname=${{ env.RG_IMAGES }}' -var 'image_Name=${{ env.IMAGE_WVD }}' -var 'image_location=${{ env.IMAGE_LOCATION }}' -var 'Os=${{ env.OS }}' -var 'Publisher=${{ env.PUBLISHER}}' -var 'Offer=${{ env.OFFER }}' -var 'Sku=${{ env.SKU }}' -var 'Share_Profils_location=${{ env.SHARE_PROFILS_LOCATION }}' -var 'Share_Profils_folder=${{ env.SHARE_PROFILS_FOLDER }}' ./Packer/image-w10evd.json
