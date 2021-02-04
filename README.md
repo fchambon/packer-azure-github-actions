@@ -12,21 +12,21 @@
               o SKU: L'instance d'une offre comme la release majeure d'une distribution (exemple: 2019-Datacenter, 20h2-evd-o365pp)<br>
               o Version: Le numéro de version d'une SKU<br><br>
 
-        o Pour lister les images:<br>
-        #Se Connecter à Azure via le Cloud Shell (PowerShell) ou Azure PowerShell CLI<br>
-            Connect-AzAccount<br>
-            $location = "North Europe"<br><br>
+        o Pour lister les images: 
+        #Se Connecter à Azure via le Cloud Shell (PowerShell) ou Azure PowerShell CLI
+            Connect-AzAccount
+            $location = "North Europe"
 
-        #Lister les publishers<br>
-            Get-AzVMImagePublisher -Location $location | Select PublisherName | Where-Object { $_.PublisherName -like '*Windows*' }<br><br>
+        #Lister les publishers
+            Get-AzVMImagePublisher -Location $location | Select PublisherName | Where-Object { $_.PublisherName -like '*Windows*' }
         
-        #Lister les offres<br>
-            $publisher = "MicrosoftWindowsDesktop"<br>
-            Get-AzVMImageOffer -Location $location -PublisherName $publisher | Select Offer<br><br>
+        #Lister les offres
+            $publisher = "MicrosoftWindowsDesktop"
+            Get-AzVMImageOffer -Location $location -PublisherName $publisher | Select Offer
 
-         #Lister les SKUs<br>
-            $offer = "windows-10-20h2-vhd-client-office-prod-stage"<br>
-            Get-AzVMImageSku -Location $location -PublisherName $publisher -Offer $offer | Select Skus<br>
+         #Lister les SKUs
+            $offer = "windows-10-20h2-vhd-client-office-prod-stage"
+            Get-AzVMImageSku -Location $location -PublisherName $publisher -Offer $offer | Select Skus
 
 
 
