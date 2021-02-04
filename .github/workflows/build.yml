@@ -28,3 +28,7 @@ jobs:
      - name: Packer Validation
        run: |
           packer validate -var 'packerspn_Id=${{ secrets.PACKERSPN_ID }}' -var 'packerspn_Secret=${{ secrets.PACKERSPN_SECRET }}' -var 'tenant_Id=$${{ secrets.TENANT_ID }}' -var 'subscription_Id=${{ secrets.AZURE_SUBID }}' -var 'image_Rgname=${{ env.RG_IMAGES }}' -var 'image_Name=${{ env.IMAGE_WVD }}' -var 'image_location=${{ env.IMAGE_LOCATION }}' -var 'Os=${{ env.OS }}' -var 'Publisher=${{ env.PUBLISHER}}' -var 'Offer=${{ env.OFFER }}' -var 'Sku=${{ env.SKU }}' -var 'Share_Profils_location=${{ env.SHARE_PROFILS_LOCATION }}' -var 'Share_Profils_folder=${{ env.SHARE_PROFILS_FOLDER }}' ./Packer/image-w10evd.json
+
+     - name: Packer Build Image
+       run: |
+          packer build -var 'packerspn_Id=${{ secrets.PACKERSPN_ID }}' -var 'packerspn_Secret=${{ secrets.PACKERSPN_SECRET }}' -var 'tenant_Id=$${{ secrets.TENANT_ID }}' -var 'subscription_Id=${{ secrets.AZURE_SUBID }}' -var 'image_Rgname=${{ env.RG_IMAGES }}' -var 'image_Name=${{ env.IMAGE_WVD }}' -var 'image_location=${{ env.IMAGE_LOCATION }}' -var 'Os=${{ env.OS }}' -var 'Publisher=${{ env.PUBLISHER}}' -var 'Offer=${{ env.OFFER }}' -var 'Sku=${{ env.SKU }}' -var 'Share_Profils_location=${{ env.SHARE_PROFILS_LOCATION }}' -var 'Share_Profils_folder=${{ env.SHARE_PROFILS_FOLDER }}' ./Packer/image-w10evd.json
