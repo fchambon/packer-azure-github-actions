@@ -1,4 +1,4 @@
-name: Build image Windows 10 EVD avec Office 365 et FSLogix
+name: Build image Windows 10 EVD avec Office 365 FSLogix
 
 on: workflow_dispatch
 
